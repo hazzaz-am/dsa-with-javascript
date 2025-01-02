@@ -6,7 +6,7 @@ const str = "hello Everyone,";
  * @param {String} str
  */
 
-function charCount(str) {
+function charCount1(str) {
 	let obj = {};
 
 	for (let i = 0; i < str.length; i++) {
