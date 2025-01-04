@@ -24,3 +24,4 @@ function correspondingValue(arr1, arr2) {
 	return true;
 }
 console.log(correspondingValue([2, 3, 4], [16, 9, 4]));
+// time complexity O(n^2)
