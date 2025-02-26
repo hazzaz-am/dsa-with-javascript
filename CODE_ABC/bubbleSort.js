@@ -7,38 +7,33 @@
  */
 
 let arr = [45, 34, 50, 40, 5];
-// [ 34, 45, 50, 40, 5 ]
-// [ 0 1 2 3 4 ] 
+
 let length = arr.length;
 let firstNum = 0;
 let secondNum = 1;
 
 while (length > 1) {
-	if (arr[firstNum] <= arr[secondNum] && secondNum < length) {
-		if (secondNum === length - 1) {
-			length = length - 1;
+	if (secondNum < length) {
+		if (arr[firstNum] <= arr[secondNum]) {
+			if (secondNum === length - 1) {
+				length = length - 1;
+			}
+			firstNum++;
+			secondNum++;
+		} else if (arr[firstNum] > arr[secondNum]) {
+			if (secondNum === length - 1) {
+				length = length - 1;
+			}
+			let temp = arr[firstNum];
+			arr[firstNum] = arr[secondNum];
+			arr[secondNum] = temp;
+			firstNum++;
+			secondNum++;
 		}
-
-		firstNum++;
-		secondNum++;
-    console.log(firstNum, secondNum)
-	} else if (arr[firstNum] > arr[secondNum] && secondNum < length) {
-		if (secondNum === length - 1) {
-			length = length - 1;
-      // console.log(length)
-		}
-		let temp = arr[firstNum];
-		arr[firstNum] = arr[secondNum];
-		arr[secondNum] = temp;
-    // console.log(arr)
-		firstNum++;
-		secondNum++;
-    // console.log(firstNum, secondNum)
+	} else {
+		firstNum = 0;
+		secondNum = 1;
 	}
 }
 
 console.log(arr);
-
-/**
- * [ 34, 45, 50, 40, 5 ]
- */
