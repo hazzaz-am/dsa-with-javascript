@@ -32,7 +32,7 @@ var maxArea = function (height) {
 		let area = (right - left) * minHeight;
 		maxContainer = Math.max(maxContainer, area);
 
-		height[left] < height[right] ? left++ : right--;
+		height[left] <= height[right] ? left++ : right--;
 	}
 
 	return maxContainer;
