@@ -5,29 +5,8 @@
  * 4. Repeat the process for the remaining elements except the first element
  */
 
-let arr = [1, 2, 3, 4];
-// length = 7
-
-// function selectionSort(arr) {
-// 	let isSorted = false;
-// 	for (let i = 0; i < arr.length; i++) {
-// 		let min = i;
-// 		isSorted = false;
-// 		for (let j = i + 1; j < arr.length; j++) {
-// 			console.log(arr, arr[i], arr[j]);
-// 			if (arr[min] > arr[j]) {
-// 				let temp = arr[min];
-// 				arr[min] = arr[j];
-// 				arr[j] = temp;
-// 				isSorted = true;
-// 			}
-// 		}
-// 		if (!isSorted) {
-// 			break;
-// 		}
-// 	}
-// 	return arr;
-// }
+let arr = [5, 3, 4, 1, 2, 7, 6];
+length = 7;
 
 function selectionSort2(arr) {
 	for (let i = 0; i < arr.length; i++) {
@@ -47,6 +26,27 @@ function selectionSort2(arr) {
 	}
 
 	return arr;
+}
+
+console.log(selectionSort2(arr));
+
+function selectionSort2(array) {
+	for (let i = 0; i < array.length; i++) {
+		let min = i;
+		for (let j = i + 1; j < array.length; j++) {
+			if (array[j] < array[min]) {
+				min = j;
+			}
+		}
+
+		if (min !== i) {
+			let temp = array[i];
+			array[i] = array[min];
+			array[min] = temp;
+		}
+	}
+
+	return array;
 }
 
 console.log(selectionSort2(arr));

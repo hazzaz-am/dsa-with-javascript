@@ -5,13 +5,12 @@
  * 4. after it reaches the end minus the length by 1
  * 5. repeat the process until the length is 1
  */
-
-let arr = [34, 4, 23, 54, 3, 4];
+let arr = [1, 2, 3, 4];
 
 /**
  * 1. Way to do it
  */
-// let length = arr.length;
+let length = arr.length;
 let firstNum = 0;
 let secondNum = 1;
 
@@ -67,13 +66,11 @@ console.log(bubbleSort(arr));
  * 3. Way to do it
  */
 
-let length = arr.length;
-
 while (length > 1) {
 	let newLength = 0;
 	for (let i = 1; i < length; i++) {
 		if (arr[i - 1] > arr[i]) {
-			[arr[i - 1], [arr[i]]] = [arr[i], [arr[i - 1]]]
+			[arr[i - 1], [arr[i]]] = [arr[i], [arr[i - 1]]];
 			newLength = i;
 		}
 	}
@@ -81,3 +78,25 @@ while (length > 1) {
 }
 
 console.log(arr);
+
+function bubbleSort(array) {
+	let swapped;
+	for (let i = 0; i < array.length - 1; i++) {
+		swapped = false;
+		for (let j = 0; j < array.length - 1; j++) {
+			if (array[j] > array[j + 1]) {
+				console.log(array, array[j], array[j + 1]);
+				let temp = array[j];
+				array[j] = array[j + 1];
+				array[j + 1] = temp;
+				swapped = true;
+			}
+		}
+
+		if (!swapped) break;
+	}
+
+	return array;
+}
+
+console.log(bubbleSort(arr));
