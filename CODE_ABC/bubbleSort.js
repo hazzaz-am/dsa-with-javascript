@@ -7,8 +7,6 @@
  */
 
 let arr = [45, 34, 50, 40, 5];
-// [ 34, 45, 50, 40, 5 ]
-// [ 0 1 2 3 4 ] 
 let length = arr.length;
 let firstNum = 0;
 let secondNum = 1;
@@ -25,20 +23,14 @@ while (length > 1) {
 	} else if (arr[firstNum] > arr[secondNum] && secondNum < length) {
 		if (secondNum === length - 1) {
 			length = length - 1;
-      // console.log(length)
 		}
 		let temp = arr[firstNum];
 		arr[firstNum] = arr[secondNum];
 		arr[secondNum] = temp;
-    // console.log(arr)
 		firstNum++;
 		secondNum++;
-    // console.log(firstNum, secondNum)
 	}
 }
 
 console.log(arr);
 
-/**
- * [ 34, 45, 50, 40, 5 ]
- */
