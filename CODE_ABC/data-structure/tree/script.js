@@ -44,6 +44,23 @@ class BinarySearch {
 			}
 		}
 	}
+
+	findChild (value) {
+		if (!this.root) {
+			return 'Child Not Found'
+		}
+
+		let currentNode = this.root
+		while(currentNode) {
+			if (currentNode.value === value) {
+				return currentNode
+			} else if (currentNode.value > value) {
+				currentNode = currentNode.leftChild
+			} else {
+				currentNode = currentNode.rightChild
+			}
+		}
+	}
 }
 
 const tree = new BinarySearch();
@@ -53,5 +70,5 @@ tree.addChild(30);
 tree.addChild(5);
 tree.addChild(15);
 tree.addChild(40);
-tree.addChild(25);
+console.log(tree.findChild(5))
 console.log(tree);
