@@ -137,6 +137,83 @@ function getSecondLargest2(arr) {
 	return secondLargest;
 }
 
-const arr = [12, 35, 1, 10, 34, 1];
+// const arr = [12, 35, 1, 10, 34, 1];
 // console.log(secondLargest(arr));
-console.log(secondLargest(arr));
+// console.log(secondLargest(arr));
+
+/**
+ * ! Problem: https://www.geeksforgeeks.org/remove-duplicates-sorted-array/
+ */
+
+function removeDuplicates(arr) {
+	let newSet = new Set();
+	// let newArr = [];
+
+	let idx = 0;
+	for (let i = 0; i < arr.length; i++) {
+		if (!newSet.has(arr[i])) {
+			newSet.add(arr[i]);
+			arr[idx++] = arr[i];
+		}
+	}
+
+	// newSet.forEach((val) => newArr.push(val));
+
+	return idx;
+}
+
+function removeDuplicates2(arr) {
+	if (arr.length <= 1) {
+		return arr.length;
+	}
+
+	let idx = 1;
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i] !== arr[i - 1]) {
+			arr[idx++] = arr[i];
+		}
+	}
+
+	return idx;
+}
+
+// const arr = [1, 2, 2, 3, 4, 4, 4, 5, 5];
+// const newSize = removeDuplicates2(arr);
+// console.log(arr.slice(0, newSize));
+
+/**
+ * ! Problem: https://www.geeksforgeeks.org/generating-subarrays-using-recursion/
+ */
+
+function subarrays(arr) {
+	let result = [];
+	for (let i = 0; i < arr.length; i++) {
+		for (let j = i; j < arr.length; j++) {
+			let subarray = [];
+			for (let k = i; k <= j; k++) {
+				subarray.push(arr[k]);
+			}
+			result.push(subarray);
+		}
+	}
+
+	return result;
+}
+
+function printSubArrays(arr, start, end) {
+	if (end == arr.length) return;
+	else if (start > end) printSubArrays(arr, 0, end + 1);
+	else {
+		let subArray = [];
+		for (let i = start; i < end; i++) {
+			subArray.push(arr[i]);
+		}
+		subArray.push(arr[end]);
+		console.log(subArray);
+		printSubArrays(arr, start + 1, end);
+	}
+	return;
+}
+
+var arr = [1, 2, 3];
+printSubArrays(arr, 0, 0);
