@@ -185,7 +185,7 @@ function removeDuplicates2(arr) {
  * ! Problem: https://www.geeksforgeeks.org/generating-subarrays-using-recursion/
  */
 
-function subarrays(arr) {
+function subArrays(arr) {
 	let result = [];
 	for (let i = 0; i < arr.length; i++) {
 		for (let j = i; j < arr.length; j++) {
@@ -215,5 +215,64 @@ function printSubArrays(arr, start, end) {
 	return;
 }
 
-var arr = [1, 2, 3];
-printSubArrays(arr, 0, 0);
+// var arr = [1, 2, 3];
+// printSubArrays(arr, 0, 0);
+
+/**
+ * ! Problem: https://www.geeksforgeeks.org/program-to-reverse-an-array/
+ */
+
+const arr = [2, 3, 4, 5, 6];
+
+function reverseArray(arr) {
+	const len = arr.length;
+	let temp = new Array(len);
+
+	for (let i = 0; i < len; i++) {
+		temp[i] = arr[len - i - 1];
+	}
+
+	for (let i = 0; i < arr.length; i++) {
+		arr[i] = temp[i];
+	}
+	return arr;
+}
+
+function reverseArray2(arr) {
+	let left = 0;
+	let right = arr.length - 1;
+
+	while (left < right) {
+		[arr[left], arr[right]] = [arr[right], arr[left]];
+		left++;
+		right--;
+	}
+
+	return arr;
+}
+
+function reverseArray3(arr) {
+	let len = arr.length;
+	for (let i = 0; i < len / 2; i++) {
+		let temp = arr[i];
+		arr[i] = arr[len - i - 1];
+		arr[len - i - 1] = temp;
+	}
+
+	return arr;
+}
+
+function reverseArrayRec(arr, left, right) {
+	if (left >= right) return;
+
+	[arr[left], arr[right]] = [arr[right], arr[left]];
+	reverseArrayRec(arr, left + 1, right - 1);
+}
+
+function reverseArray4(arr) {
+	let len = arr.length;
+	reverseArrayRec(arr, 0, len - 1);
+	return arr;
+}
+
+console.log(reverseArray4(arr));
