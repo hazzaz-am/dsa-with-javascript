@@ -222,7 +222,7 @@ function printSubArrays(arr, start, end) {
  * ! Problem: https://www.geeksforgeeks.org/program-to-reverse-an-array/
  */
 
-const arr = [2, 3, 4, 5, 6];
+// const arr = [2, 3, 4, 5, 6];
 
 function reverseArray(arr) {
 	const len = arr.length;
@@ -275,4 +275,39 @@ function reverseArray4(arr) {
 	return arr;
 }
 
-console.log(reverseArray4(arr));
+// console.log(reverseArray4(arr));
+
+/**
+ * ! Problem: https://www.geeksforgeeks.org/complete-guide-on-array-rotations/
+ */
+
+function rotateArrOneByOne(arr, times) {
+	let len = arr.length;
+	for (let i = 0; i < times; i++) {
+		let last = arr[len - 1];
+		for (let j = len - 1; j > 0; j--) {
+			arr[j] = arr[j - 1];
+		}
+		arr[0] = last;
+	}
+	return arr;
+}
+
+function rotateByTemporary(arr, times) {
+	let len = arr.length;
+	let temp = new Array(len);
+
+	for (let i = 0; i < times; i++) {
+		temp[i] = arr[len - times + i];
+	}
+
+	for (let j = 0; j < len - times; j++) {
+		temp[times + j] = arr[j];
+	}
+
+	for (let k = 0; k < arr.length; k++) {
+		arr[k] = temp[k];
+	}
+
+	return arr;
+}
