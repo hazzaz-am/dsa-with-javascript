@@ -311,3 +311,41 @@ function rotateByTemporary(arr, times) {
 
 	return arr;
 }
+
+function jugglingAlgorithm(arr, d) {
+	let len = arr.length;
+
+	d %= len;
+	let cycles = G_C_D(len, d);
+
+	for (let i = 0; i < cycles; i++) {
+		let currIdx = i;
+		let currEle = arr[currIdx];
+
+		do {
+			let nextIdx = (currIdx + d) % len;
+			let nextEle = arr[nextIdx];
+
+			arr[nextIdx] = currEle;
+			currEle = nextEle;
+
+			currIdx = nextIdx;
+		} while (currIdx !== i);
+	}
+
+	return arr;
+}
+
+function G_C_D(a, b) {
+	while (b !== 0) {
+		let temp = b;
+		b = b % a;
+		a = temp;
+	}
+
+	return a;
+}
+
+const arr = [1, 2, 3, 4, 5, 6];
+const d = 2;
+console.log(jugglingAlgorithm(arr, d));
