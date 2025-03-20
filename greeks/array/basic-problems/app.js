@@ -346,6 +346,32 @@ function G_C_D(a, b) {
 	return a;
 }
 
-const arr = [1, 2, 3, 4, 5, 6];
-const d = 2;
-console.log(jugglingAlgorithm(arr, d));
+/**
+ *
+ * @param {Array} arr
+ * @param {Number} d
+ */
+
+function rotateArrRsc(arr, d) {
+	let len = arr.length;
+	d %= len;
+	arr.reverse();
+	reverseArray(arr, 0, d - 1);
+	reverseArray(arr, d, len - 1);
+	return arr;
+}
+
+function reverseArray(arr, start, end) {
+	while (start < end) {
+		let temp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = temp;
+		start++;
+		end--;
+	}
+}
+
+let arr = [1, 2, 3, 4, 5, 6];
+let d = 7;
+
+console.log(rotateArrRsc(arr, d));
