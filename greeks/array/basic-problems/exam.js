@@ -1,16 +1,12 @@
-// Alternate elements
+// Liner Search element is in their
 
-function recursiveApproach(arr, idx, res) {
-	if (idx < arr.length) {
-		res.push(arr[idx]);
-		recursiveApproach(arr, idx + 2, res);
+function linearSearch(arr, exp) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] === exp) {
+			return i;
+		}
 	}
+	return -1;
 }
-
-function getAlternates(arr) {
-  let res = []
-  recursiveApproach(arr, 0, res)
-  return res
-}
-
-console.log(getAlternates([1, 2, 3, 4, 5]));
+const arr = [2, 3, 4, 10, 40];
+console.log(linearSearch(arr, 10));
