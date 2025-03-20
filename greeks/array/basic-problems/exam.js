@@ -1,12 +1,32 @@
-// Liner Search element is in their
+// largest element in the array
 
-function linearSearch(arr, exp) {
+// Iterative Approach
+
+function largestNumber(arr) {
+	let max = arr[0];
+
 	for (let i = 0; i < arr.length; i++) {
-		if (arr[i] === exp) {
-			return i;
+		if (arr[i] > max) {
+			max = arr[i];
 		}
 	}
-	return -1;
+
+	return max;
 }
-const arr = [2, 3, 4, 10, 40];
-console.log(linearSearch(arr, 10));
+
+// Recursive Approach
+function recursiveApproach(arr, i) {
+	if (i === arr.length - 1) {
+		return arr[i];
+	}
+
+	let recMax = recursiveApproach(arr, i + 1);
+	return Math.max(recMax, i);
+}
+
+// Method Approach
+function methodApproach(arr) {
+  return Math.max(...arr)
+}
+const arr = [20, 10, 20, 4, 100];
+console.log(methodApproach(arr, 0));
