@@ -1,55 +1,35 @@
-// find second largest
+// Remove duplicates from Sorted Array
 
-// naive approach
-function naiveApproach(arr) {
-	let len = arr.length;
-
-	arr.sort((a, b) => a - b);
-	for (let i = len - 2; i >= 0; i--) {
-		if (arr[i] !== arr[len - 1]) {
-			return arr[i];
-		}
-	}
-	return -1;
+function removeDuplicates(arr) {
+	return Array.from(new Set(arr));
 }
 
-// better approach
-function betterApproach(arr) {
-	let max = -1;
-	let secondMax = -1;
+function removeUnsortedDuplicates(arr) {
+	let newArray = new Set();
+
 	for (let i = 0; i < arr.length; i++) {
-		if (arr[i] > max) {
-			max = arr[i];
+		if (!newArray.has(arr[i])) {
+			newArray.add(arr[i]);
 		}
 	}
-
-	for (let j = 0; j < arr.length; j++) {
-		if (arr[j] > secondMax && arr[j] !== max) {
-			secondMax = arr[j];
-		}
-	}
-
-	return secondMax;
+	return Array.from(newArray);
 }
 
-// expected approach
 function expectedApproach(arr) {
-	let max = arr[0];
-	let secondMax = -1;
+	if (arr.length <= 1) {
+		return arr.length;
+	}
 
-	for (let i = 0; i < arr.length; i++) {
-		if (arr[i] > max) {
-			secondMax = max;
-			max = arr[i];
-		} else {
-			if (arr[i] > secondMax) {
-				secondMax = arr[i];
-			}
+	let idx = 1;
+	for (let i = 1; i < arr.length; i++) {
+		if (arr[i] !== arr[i - 1]) {
+			arr[idx++] = arr[i];
 		}
 	}
 
-	return secondMax;
+	return idx;
 }
 
-const arr = [12, 35, 1, 10, 34, 1];
-console.log(expectedApproach(arr));
+const arr = [1, 2, 2, 3, 4, 4, 4, 5, 5];
+const newSize = expectedApproach(arr);
+console.log(arr.slice(0, newSize));
