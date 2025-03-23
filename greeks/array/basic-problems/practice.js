@@ -1,41 +1,59 @@
-// generate all possible sub arrays
+// reverse an array
 
-function generateAllPossibleSubarray(array) {
-	let result = [];
-	for (let i = 0; i < array.length; i++) {
-		for (let j = i; j < array.length; j++) {
-			let arr = [];
-			for (let k = i; k <= j; k++) {
-				arr.push(array[k]);
-			}
-			result.push(arr);
-		}
+function reverseArray(arr) {
+	let i = 0;
+	let j = arr.length - 1;
+
+	while (j > i) {
+		let temp = arr[i];
+		arr[i] = arr[j];
+		arr[j] = temp;
+		i++;
+		j--;
 	}
 
-	return result;
+	return arr;
 }
 
-function recursiveApproach(arr, result, start, end) {
-	if (end === arr.length) {
+function tempArray(arr) {
+	const len = arr.length;
+	let newArr = new Array(len);
+
+	for (let i = 0; i < arr.length; i++) {
+		newArr[i] = arr[len - i - 1];
+	}
+
+	for (let i = 0; i < arr.length; i++) {
+		arr[i] = newArr[i];
+	}
+
+	return arr;
+}
+
+function swappingElements(arr) {
+	const len = arr.length;
+	for (let i = 0; i < len / 2; i++) {
+		let currLast = arr[len - i - 1];
+		let temp = arr[i];
+		arr[i] = currLast;
+		currLast = temp;
+	}
+
+	return arr;
+}
+
+function recursiveFN(arr, left, right) {
+	if (left >= right) {
 		return;
-	} else if (start > end) {
-		recursiveApproach(arr, result, 0, end + 1);
-	} else {
-		let subArray = [];
-		for (let i = start; i < end; i++) {
-			subArray.push(arr[i]);
-		}
-		subArray.push(arr[end]);
-		result.push(subArray);
-		recursiveApproach(arr, result, start + 1, end);
 	}
+
+	[arr[left], arr[right]] = [arr[right], arr[left]];
+	recursiveFN(arr, left + 1, right - 1);
 }
 
-function rcf(arr) {
-	let result = [];
-	recursiveApproach(arr, result, 0, 0);
-	return result;
+function recursiveCall(arr) {
+	recursiveFN(arr, 0, arr.length - 1);
+	return arr;
 }
 
-const arr = [1, 2, 3, 4];
-console.log(rcf(arr, 0, 0));
+console.log(recursiveCall([1, 2, 3, 4, 5, 6]));
