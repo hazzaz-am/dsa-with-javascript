@@ -11,4 +11,19 @@ function rotateOneByOne(arr, times) {
 	return arr;
 }
 
-console.log(rotateOneByOne([1, 2, 3, 4, 5, 6], 2));
+function usingTemporaryArray(arr, times) {
+	const len = arr.length;
+	let tempArr = new Array(len);
+	times %= len;
+	for (let i = 0; i < times; i++) {
+		tempArr[i] = arr[len - times + i];
+	}
+
+	for (let i = 0; i < len - times; i++) {
+		tempArr[times + i] = arr[i];
+	}
+
+	return tempArr;
+}
+
+console.log(usingTemporaryArray([1, 2, 3, 4, 5, 6], 8));
