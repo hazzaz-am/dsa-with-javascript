@@ -26,4 +26,37 @@ function usingTemporaryArray(arr, times) {
 	return tempArr;
 }
 
-console.log(usingTemporaryArray([1, 2, 3, 4, 5, 6], 8));
+function jugglingAlgorithm(arr, times) {
+	const len = arr.length;
+	times %= len;
+	const cycles = G_C_D(len, times);
+
+	for (let i = 0; i < cycles; i++) {
+		let currIdx = i;
+		let currElem = arr[currIdx];
+
+		do {
+			let nextIdx = (currIdx + times) % len;
+			let nextElem = arr[nextIdx];
+
+			arr[nextIdx] = currElem;
+			currElem = nextElem;
+			currIdx = nextIdx;
+		} while (currIdx !== i);
+	}
+
+	return arr;
+}
+
+function G_C_D(a, b) {
+	while (b !== 0) {
+		console.log("from GCD");
+		const temp = b;
+		b = a % b;
+		a = temp;
+	}
+
+	return a;
+}
+
+console.log(jugglingAlgorithm([1, 2, 3, 4, 5, 6], 2));
