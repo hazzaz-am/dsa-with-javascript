@@ -59,4 +59,29 @@ function G_C_D(a, b) {
 	return a;
 }
 
-console.log(jugglingAlgorithm([1, 2, 3, 4, 5, 6], 2));
+/**
+ *
+ * @param {Array} arr
+ * @param {Number} times
+ */
+function recursionAlgorithm(arr, times) {
+	const len = arr.length;
+	times %= len;
+	arr.reverse();
+
+	customReverse(arr, 0, times - 1);
+	customReverse(arr, times, len - 1);
+	return arr;
+}
+
+function customReverse(arr, start, end) {
+	while (start < end) {
+		const temp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = temp;
+		start++;
+		end--;
+	}
+}
+
+console.log(recursionAlgorithm([1, 2, 3, 4, 5, 6], 2));
