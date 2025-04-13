@@ -46,4 +46,7 @@ function usingForEachLoop(arr) {
 }
 
 const arr = [10, 5, 20, 8, 15];
-console.log(usingForEachLoop(arr));
+// console.log(usingForEachLoop(arr));
+
+
+
